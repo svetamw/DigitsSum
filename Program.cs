@@ -31,7 +31,7 @@ namespace DigitsSum
         }
 
 
-        static void Main()
+        static void Main1()
         {
             const int x_min = 100;
             const int x_max = 1000;
@@ -43,13 +43,16 @@ namespace DigitsSum
                 var x0 = x;
                 var thread = new Thread(() =>
                         {
-                            lock (sums) //последующие строки в фигурных скобках выполняются как единое целое
+                            Thread.Sleep(5000);
+                            //lock (sums) //последующие строки в фигурных скобках выполняются как единое целое
                             {
                                 //Console.Write("Sum({0})", x);
                                 var sum = GetDigitsSum(x0);
+                                Console.WriteLine("{0} - {1}", x0, sum);
                                 //Console.WriteLine(sum);
                             }
                         });
+                Console.WriteLine(x);
                 thread.Start();
             }
             var stop1 = DateTime.Now;
@@ -58,7 +61,7 @@ namespace DigitsSum
             Console.ReadLine();
         }
 
-        static void Main1()
+        static void Main()
         {
             const int x_min = 100;
             const int x_max = 1000;
