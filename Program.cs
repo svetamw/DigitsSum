@@ -31,11 +31,13 @@ namespace DigitsSum
         }
 
 
-        static void Main1()
+        static void Main()
         {
             const int x_min = 100;
-            const int x_max = 200;
+            const int x_max = 1000;
             var sums = new List<int>();
+            var start1 = DateTime.Now;
+
             for (int x = x_min; x <= x_max; x++)
             {
                 var x0 = x;
@@ -43,31 +45,36 @@ namespace DigitsSum
                         {
                             lock (sums) //последующие строки в фигурных скобках выполняются как единое целое
                             {
-                                Console.Write("Sum({0})", x);
+                                //Console.Write("Sum({0})", x);
                                 var sum = GetDigitsSum(x0);
-                                Console.WriteLine(sum);
+                                //Console.WriteLine(sum);
                             }
                         });
                 thread.Start();
             }
-            Console.WriteLine("Total sum {0}", sums.Sum());
+            var stop1 = DateTime.Now;
+            //Console.WriteLine("Total sum {0}", sums.Sum());
+            Console.WriteLine((stop1 - start1));
             Console.ReadLine();
         }
 
-        static void Main()
+        static void Main1()
         {
             const int x_min = 100;
-            const int x_max = 200;
+            const int x_max = 1000;
             var sums = new List<int>();
+            var start1 = DateTime.Now;
             for (int x = x_min; x <= x_max; x++)
             {
                 var sum = GetDigitsSum(x);
                 sums.Add(sum);
-                Console.Write("Sum{0} = ", x);
-                Console.WriteLine(sum);
+               // Console.Write("Sum{0} = ", x);
+               //Console.WriteLine(sum);
 
             }
-            Console.WriteLine("Total sum {0}", sums.Sum());
+            var stop1 = DateTime.Now;
+            Console.WriteLine((stop1 - start1));
+            //Console.WriteLine("Total sum {0}", sums.Sum());
             Console.ReadLine();
         }
 
